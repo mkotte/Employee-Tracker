@@ -1,14 +1,21 @@
 // dependencies
 const inquirer = require('inquirer');
-const db = require('./db/connection');
-const Department = require('./db/departmentcontroller')
-const Employee = require('./db/employeecontroller')
-const Role = require('./db/rolecontroller')
+const mysql2 = require('mysql2');
+
+const db = require('./config/connection');
+const Department = require('./models/departmentcontroller')
+const Employee = require('./models/employeecontroller')
+const Role = require('./models/rolecontroller')
 
 
 db.Department = new Department();
 db.Employee = new Employee();
 db.Role = new Role();
 
-//prompts
-const questions = {}
+
+
+//prompts to add, view, update and delete (departments, roles + employees)
+const questions = {
+    
+}
+

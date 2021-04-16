@@ -1,0 +1,29 @@
+{
+  "name": "employee-tracker",
+  "version": "1.0.0",
+  "description": "simple content management system",
+  "main": "app.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mkotte/Employee-Tracker.git"
+  },
+  "keywords": [
+    "employee",
+    "tracker",
+    "kotte"
+  ],
+  "author": "C. Michael Kotte",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mkotte/Employee-Tracker/issues"
+  },
+  "homepage": "https://github.com/mkotte/Employee-Tracker#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "inquirer": "^8.0.0",
+    "mysql2": "^2.2.5"
+  }
+}
