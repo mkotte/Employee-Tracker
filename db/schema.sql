@@ -27,5 +27,6 @@ CREATE TABLE employee_table (
     manager_id INT,
     PRIMARY KEY(id),
     FOREIGN KEY(role_id) REFERENCES role_table(id)
-    -- possibly add manager id foreign key reference
+    -- manager id foreign key reference
+    FOREIGN KEY(manager_id) REFERENCES employee_table(manager_id)
 );

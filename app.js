@@ -112,7 +112,11 @@ const viewRoles = () => {
 }
 
 const viewByManager = () => {
-    
+    const query = 'SELECT * FROM employee_table ORDER BY manager_id'
+    connection.query(query, (err,res) =>{
+        if(err){ res.json(err) }
+        console.table(res)
+    })
 }
 
 const addEmployee = () => {
