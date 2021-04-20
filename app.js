@@ -87,15 +87,32 @@ const init = () => {
 
 
 const viewEmployees = () => {
-    console.table(Employees)
+    const query = 'SELECT * FROM employee_table'
+    connection.query(query, (err,res) =>{
+        if(err){ res.json(err) }
+        console.table(res)
+    })
+    
 }
 
-const viewByDepartment = () => {
-    console.table(Department)
+const viewDepartments = () => {
+    const query = 'SELECT * FROM department_table'
+    connection.query(query, (err,res) =>{
+        if(err){ res.json(err) }
+        console.table(res)
+    })
+}
+
+const viewRoles = () => {
+    const query = 'SELECT * FROM role_table'
+    connection.query(query, (err,res) =>{
+        if(err){ res.json(err) }
+        console.table(res)
+    })
 }
 
 const viewByManager = () => {
-
+    
 }
 
 const addEmployee = () => {
@@ -103,11 +120,25 @@ const addEmployee = () => {
     // prompt for employee name's, id, role, finished
 }
 
+const addRole = () => {
+    console.table(Role);
+    // prompt for employee name's, id, role, finished
+}
+
+const addDepartment = () => {
+    console.table(Department);
+    // prompt for employee name's, id, role, finished
+}
+
 const removeEmployee = () => {
 
 }
 
-const updateEmployee = () => {
+const removeRole = () => {
+
+}
+
+const removeDepartment = () => {
 
 }
 
