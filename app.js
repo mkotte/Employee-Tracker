@@ -4,19 +4,11 @@ const mysql = require('mysql');
 
 const connection = mysql.createConnection({
     host: 'localhost',
-  
-    // Your port; if not 3306
     port: 3306,
-  
-    // Your username
     user: 'root',
-  
-    // Be sure to update with your own MySQL password!
     password: 'mydogrocks',
     database: 'employee_db',
-  });
-
-
+});
 
 //prompts to add, view, update and delete (departments, roles + employees)
 const initPrompt = [
@@ -29,7 +21,7 @@ const initPrompt = [
             'View all departments',
             'View all roles',
             'View all employees by manager',
-            'Add employee',
+            'Add new employee',
             'Add new role',
             'Add new department',
             'Remove employee',
@@ -121,14 +113,45 @@ const viewByManager = () => {
     })
     init();
 }
+const addEmployeeQs =[ 
+        {
+            type: 'input',
+            name: 'id',
+            message: 'What is the new employees id?',
+        },
+        {
+            type: 'input',
+            name: 'first_name',
+            message: 'What is the new employees first name?',
+        },
+        {
+            type: 'input',
+            name: 'last_name',
+            message: 'What is the new employees last name?',
+        },
+        {
+            type: 'input',
+            name: 'role_id',
+            message: 'What is the new employees role id?',
+        },{
+            type: 'input',
+            name: 'manager_id',
+            message: 'What is the new employees manager id?',
+        }
+];
+
 
 const addEmployee = () => {
-    const query = 'SELECT * FROM employee_table ORDER BY manager_id;'
-    connection.query(query, (err,res) =>{
-        if(err){ res.json(err) }
-        console.table(res)
+    console.log(1)
+    inquirer.prompt(addEmployeeQs)
+    .then((answer) => {
+        console.log(2)
+        const query = `INSERT INTO employee_table(id, first_name, last_name, role_id, manager_id) VALUES (${answer.id}, ${answer.first_name}, ${answer.last_name}, ${answer.role_id},${answer.manager_id});`
+        connection.query(query, (err,res) =>{
+            if(err){ res.json(err) };
+            console.table(res);
+        })
     })
-    // .then() prompt for employee name's, id, role, finished
 }
 
 const addRole = () => {

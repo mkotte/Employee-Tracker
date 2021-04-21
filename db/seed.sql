@@ -8,6 +8,7 @@ VALUES
 (003, "Engineering"),
 (004, "Finance"),
 (005, "Legal");
+
 ​
 INSERT INTO role_table(id, title, salary, department_id)
 VALUES
