@@ -1,6 +1,6 @@
 // dependencies
 const inquirer = require('inquirer');
-const mysql2 = require('mysql2');
+const mysql = require('mysql');
 
 const connection = mysql.createConnection({
     host: 'localhost',
@@ -29,7 +29,8 @@ const initPrompt = [
             'View all departments',
             'View all roles',
             'View all employees by manager',
-            'Add employee','Add new role',
+            'Add employee',
+            'Add new role',
             'Add new department',
             'Remove employee',
             'Remove role',
@@ -41,9 +42,9 @@ const initPrompt = [
 ]
 
 const init = () => {
-    promptUser()
+    inquirer.prompt(initPrompt)
     .then((answer) => {
-        switch (answer.action){
+        switch (answer.options){
             case 'View all employees':
                 viewEmployees();
                 break;
@@ -80,58 +81,72 @@ const init = () => {
             case 'Update employee manager':
                 updateManager();
                 break;
-
         }
     })
 };
 
 
 const viewEmployees = () => {
-    const query = 'SELECT * FROM employee_table'
+    const query = 'SELECT * FROM employee_table;';
     connection.query(query, (err,res) =>{
-        if(err){ res.json(err) }
-        console.table(res)
+        if(err){ res.json(err) };
+        console.table(res);
     })
-    
+    init();
 }
 
 const viewDepartments = () => {
-    const query = 'SELECT * FROM department_table'
+    const query = 'SELECT * FROM department_table;';
     connection.query(query, (err,res) =>{
-        if(err){ res.json(err) }
-        console.table(res)
+        if(err){ res.json(err) };
+        console.table(res);
     })
+    init();
 }
 
 const viewRoles = () => {
-    const query = 'SELECT * FROM role_table'
+    const query = 'SELECT * FROM role_table;'
     connection.query(query, (err,res) =>{
         if(err){ res.json(err) }
         console.table(res)
     })
+    init();
 }
 
 const viewByManager = () => {
-    const query = 'SELECT * FROM employee_table ORDER BY manager_id'
+    const query = 'SELECT * FROM employee_table ORDER BY manager_id;'
     connection.query(query, (err,res) =>{
         if(err){ res.json(err) }
         console.table(res)
     })
+    init();
 }
 
 const addEmployee = () => {
-    console.table(Employee);
-    // prompt for employee name's, id, role, finished
+    const query = 'SELECT * FROM employee_table ORDER BY manager_id;'
+    connection.query(query, (err,res) =>{
+        if(err){ res.json(err) }
+        console.table(res)
+    })
+    // .then() prompt for employee name's, id, role, finished
 }
 
 const addRole = () => {
-    console.table(Role);
-    // prompt for employee name's, id, role, finished
+    const query = 'SELECT * FROM employee_table ORDER BY manager_id;'
+    connection.query(query, (err,res) =>{
+        if(err){ res.json(err) }
+        console.table(res)
+    })
+    // .then() prompt for employee name's, id, role, finished
 }
 
 const addDepartment = () => {
-    console.table(Department);
-    // prompt for employee name's, id, role, finished
+    const query = 'SELECT * FROM employee_table ORDER BY manager_id;'
+    connection.query(query, (err,res) =>{
+        if(err){ res.json(err) }
+        console.table(res)
+    })
+    // .then() prompt for employee name's, id, role, finished
 }
 
 const removeEmployee = () => {
