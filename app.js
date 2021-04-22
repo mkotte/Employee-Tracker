@@ -116,7 +116,7 @@ const viewByManager = () => {
 const addEmployeeQs =[ 
         {
             type: 'input',
-            name: 'id',
+                  name: 'id',
             message: 'What is the new employees id?',
         },
         {
@@ -133,7 +133,13 @@ const addEmployeeQs =[
             type: 'input',
             name: 'role_id',
             message: 'What is the new employees role id?',
-        },{
+        },
+        {
+            type: 'input',
+            name: 'role_title',
+            message: 'What is the new employees role title?',
+        },
+        {
             type: 'input',
             name: 'manager_id',
             message: 'What is the new employees manager id?',
@@ -145,12 +151,32 @@ const addEmployee = () => {
     console.log(1)
     inquirer.prompt(addEmployeeQs)
     .then((answer) => {
-        console.log(2)
-        const query = `INSERT INTO employee_table(id, first_name, last_name, role_id, manager_id) VALUES (${answer.id}, ${answer.first_name}, ${answer.last_name}, ${answer.role_id},${answer.manager_id});`
-        connection.query(query, (err,res) =>{
+        console.log(2);
+        const query = `INSERT INTO role_table(id , title) Value (${answer.role_id}, "${answer.role_title}");` 
+        connection.query(query), (err,res) =>{
+            console.log(2)
             if(err){ res.json(err) };
             console.table(res);
+        }
+        const query2 = 'INSERT INTO employee_table SET ?';
+        connection.query(query2, {
+            id: answer.id,
+            first_name: answer.first_name,
+            last_name: answer.last_name,
+            role_id: answer.role_id,
+            manager_id: answer.manager_id
+        }, (err, res) => {
+            if (err) throw err
+            console.table(res)
+            console.log('success')
         })
+        // viewEmployees();
+
+        // connection.query(query), (err,res) =>{
+        //     console.log(2)
+        //     if(err){ res.json(err) };
+        //     console.table(res);
+        // }
     })
 }
 
@@ -169,6 +195,8 @@ const addDepartment = () => {
         if(err){ res.json(err) }
         console.table(res)
     })
+
+
     // .then() prompt for employee name's, id, role, finished
 }
 
