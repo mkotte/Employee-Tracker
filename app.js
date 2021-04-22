@@ -24,12 +24,8 @@ const initPrompt = [
             'Add new employee',
             'Add new role',
             'Add new department',
-            'Remove employee',
-            'Remove role',
-            'Remove department',
-            'Update employee',
             'Update employee role',
-            'Update employee manager']
+        ]
     }
 ]
 
@@ -119,6 +115,7 @@ const updateEmployeeRoleQs = [
         message: 'What is the updated role id of the employee?',
     }
 ]
+
 const init = () => {
     inquirer.prompt(initPrompt)
     .then((answer) => {
@@ -246,11 +243,14 @@ const addDepartment = () => {
 const updateEmployeeRole = () => {
     inquirer.prompt(updateEmployeeRoleQs)
     .then((answer) => {
-        const query = `UPDATE employee_table SET role_id = ${answer.role_id}(id , department_name) Value (${answer.id}, "${answer.department_name}");`
+        const query = `UPDATE employee_table SET role_id = ${answer.role_id} WHERE id = ${answer.id};`
         connection.query(query, (err,res) =>{
             if(err){ res.json(err) }
+            console.log('Successfully updated employee role!')
+            viewEmployees();
         })
     })
+    
 }
 
 init();
