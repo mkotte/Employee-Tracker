@@ -17,3 +17,6 @@ View employees by manager
 Delete departments, roles, and employees
 
 View the total utilized budget of a department -- ie the combined salaries of all employees in that department
+
+# Video Walkthrough
+Video (https://drive.google.com/file/d/1TmL2XQHlvg86C-W7HJCEebYk9xONBAlY/view)
